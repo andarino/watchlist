@@ -51,8 +51,6 @@ public class ConsumerAPI {
 
      int i;
      for(i = 0; i < qtdResultados.size() ; i++) {
-    	// endPointsTitle.add(response.getBody().getResults().get(i).getTitle());//endPointsTitle.add(response.getBody().getResults().get(i).getTitle());
-    	// endPointsImg.add(response.getBody().getResults().get(i).getImage()); // endPointsImg.add(response.getBody().getResults().get(i).getImage().getUrl()); 
     	 listaFilmes.add(response.getBody().getResults().get(i));         
     	 }
 
@@ -63,7 +61,6 @@ public class ConsumerAPI {
     }
  return listaFilmes;
 	}
-	
 	
 	public ConsumerAPI() {
 		// TODO Auto-generated constructor stub

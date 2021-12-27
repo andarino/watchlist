@@ -2,6 +2,7 @@ package com.springboot.watchlist.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -14,11 +15,11 @@ import java.util.List;
 
 import com.springboot.watchlist.service.*;
 
-@RestController
+@Controller
 public class apiController{
 	
 	@Autowired
-	private WatchlistService watchlistService; //cara que faz a conexao como o banco de dados
+	WatchlistService watchlistService; //cara que faz a conexao como o banco de dados
 	
 	ConsumerAPI consumerAPI;
 	MongoModel mongoModel;
