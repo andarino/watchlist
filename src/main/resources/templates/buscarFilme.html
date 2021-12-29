@@ -49,13 +49,13 @@
   <section>
   
 
-  <form method="post" action="#" th:action="@{/idx}" th:object="${mongoModel}">
+  <form method="post" action="#" th:action="@{/index}" th:object="${Result}">
     <div class="container" style="width: 60%; padding-bottom: 30px;">
       <div class="filmes">
         <div class="card item"  th:each="i : ${obj}" th:if="${i.getTitleType()} and ${i.image}" >
-          <img type="text" th:each="s : ${i.image}" th:src="${s.url}" class="card-img-top" alt="...">
+          <img type="text"  th:each="s : ${i.image}" th:src="${s.url}" th:field="${s.url}" class="card-img-top" alt="...">
           <div class="card-body">
-            <h5  type="text"class="card-title" th:text="${i.getTitle()}">ever_fell</h5>
+            <h5  type="text"class="card-title" th:text="${i.getTitle()}" th:field="${i.getTitle()}">ever_fell</h5>
             <button type="submit" class="btn btn-primary">Adicionar à lista</button>
           </div>
         </div>

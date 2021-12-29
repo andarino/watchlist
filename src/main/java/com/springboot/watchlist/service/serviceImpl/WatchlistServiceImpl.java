@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.springboot.watchlist.model.MongoModel;
+import com.springboot.watchlist.model.Result;
 import com.springboot.watchlist.repository.WatchlistRepository;
 import com.springboot.watchlist.service.WatchlistService;
 
@@ -25,10 +26,8 @@ public class WatchlistServiceImpl implements WatchlistService{
 		return watchlistRepo.findById(id).get();
 	}
 
-	@Override
-	public MongoModel save(MongoModel mongoModel) {
-		
-		return watchlistRepo.save(mongoModel);
+	public MongoModel save(MongoModel mm) {	
+		return watchlistRepo.save(mm);
 	}
 	
 }

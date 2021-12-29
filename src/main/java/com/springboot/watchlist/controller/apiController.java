@@ -10,9 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.springboot.watchlist.consumer.ConsumerAPI;
 import com.springboot.watchlist.model.MongoModel;
 import com.springboot.watchlist.model.Result;
-
 import java.util.List;
-
 import com.springboot.watchlist.service.*;
 
 @Controller
@@ -20,9 +18,7 @@ public class apiController{
 	
 	@Autowired
 	WatchlistService watchlistService; //cara que faz a conexao como o banco de dados
-	
 	ConsumerAPI consumerAPI;
-	MongoModel mongoModel;
 
 		@RequestMapping(value = "/minhaLista", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	    public ModelAndView minhaLista() {
@@ -32,6 +28,7 @@ public class apiController{
 	    	mv.addObject("filmesDetails", filmesDetails);
 	        return mv;
 	    } 
+		
 		//!!! this method should be GET !!!
 	@RequestMapping(value = "/", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ModelAndView consumerAPI() {
@@ -45,37 +42,42 @@ public class apiController{
 	
     @RequestMapping(value = "/index", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ModelAndView consumerAPI(@RequestParam("q") String q) {
-    	ModelAndView mv = new ModelAndView("index");
+    	ModelAndView mv = new ModelAndView("index");    	
     	List<Result> filmes = ConsumerAPI.ConnectAPI(q); 
+    	
+    	//passar o result para mongoModel
+    	List<MongoModel> mm = null;
     	mv.setViewName("buscarFilme");
         mv.addObject("obj", filmes);  
         return mv;
     } 
+    
+    @RequestMapping(value = "/index", method = RequestMethod.POST)
+    public String salvarCLI(@RequestParam("q") String q, @ModelAttribute MongoModel mm) {
+    	ModelAndView mv = new ModelAndView("index");
+    	List<Result> filmes = ConsumerAPI.ConnectAPI(q); 
+    	//watchlistService.save((Result) filmes);
+        	return "redirect:/minhaLista";
+    }
    
+    /*
 	//criando formulario para preencher os posts
 	@RequestMapping(value = "/idx", method = RequestMethod.GET)
 	public ModelAndView getPostForm() {
-		ModelAndView mv = new ModelAndView("index");
-		mv.setViewName("index");
+		ModelAndView mv = new ModelAndView("a");
+		mv.setViewName("a");
 		return mv;
 	}
     
 	@RequestMapping(value = "/idx", method = RequestMethod.POST)
-	public String savePost(@ModelAttribute("mongoModel") MongoModel mongoModel)
+	public String savePost(@ModelAttribute MongoModel mm)
 	{
 		//dadosCliente que vai salvar no banco response.getBody().getResults().get(i)
 		System.out.println("espancando");
-		System.out.println("mongoModel=> " + mongoModel.getTitulo());
+		System.out.println("mongoModel => "+ mm.getTitulo() +" "+ mm.getPoster());
 		//filmesRepo.save(mongoModel); 
 		return "buscarFilme";
 	}
-    
-    
-/*	void dadosCliente(String titulo, String urlPoster) {
-        System.out.println("Data creation started..."); //VERIFIACAR SE AO RETIRAR O ID DÁ MERDA
-        filmesRepo.save(new MongoModel(0, titulo, urlPoster));     
-        System.out.println("Data creation complete...");
-    }
 */
 
 }
