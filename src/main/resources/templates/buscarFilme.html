@@ -1,5 +1,8 @@
 <!DOCTYPE html>
-<html xmls:th="http://thymeleaf.org">
+<html  lang="en" xmls:th="http://thymeleaf.org"
+	xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:sec="http://www.thymeleaf.org">
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <title>Watchlist</title>
@@ -21,7 +24,7 @@
     }
   </style>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 </head>
 <body>
 
@@ -48,25 +51,65 @@
   </header>
   <section>
   
-
-  <form method="post" action="#" th:action="@{/index}" th:object="${Result}">
+  <form id="formal" method="post" action="#" th:action="@{/index}" th:object="${mm}">
+  
     <div class="container" style="width: 60%; padding-bottom: 30px;">
-      <div class="filmes">
-        <div class="card item"  th:each="i : ${obj}" th:if="${i.getTitleType()} and ${i.image}" >
-          <img type="text"  th:each="s : ${i.image}" th:src="${s.url}" th:field="${s.url}" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5  type="text"class="card-title" th:text="${i.getTitle()}" th:field="${i.getTitle()}">ever_fell</h5>
+      <div class="filmes">     
+        <div class="card item" th:each="i : ${obj}" th:if="${i.getTitleType()} and ${i.image}">
+      		 	<img type="text" th:each="s : ${i.image}" 
+      			 th:src="${s.url}" class="card-img-top" alt="...">
+      		 <input type="hidden" name="poster" />
+
+          <div class="card-body" >
+			
+				<h5 type="text" class="card-title" th:text="${i.getTitle()}">TITU</h5>
+     		     <input type="hidden" name="titulo" th:value="${i.getTitle[0]}" />
+          <p><input type="submit" class="btn btn-primary" value="Send Me!" /> </p>
             <button type="submit" class="btn btn-primary">Adicionar à lista</button>
+         
           </div>
         </div>
-        <hr>
-      </div>
+        
+      </div><!-- div filmes -->
     </div>
+    
     </form>
     
   </section>
-  <script>
+  <script type="text/javascript">
+  window.addEventListener( "load", function () {
+	  function sendData() {
+	    const XHR = new XMLHttpRequest();
 
+	    // Bind the FormData object and the form element
+	    const FD = new FormData( form );
+
+	    // Define what happens on successful data submission
+	    XHR.addEventListener( "load", function(event) {
+	      //alert( event.target.responseText );
+	    } );
+
+	    // Define what happens in case of error
+	    XHR.addEventListener( "error", function( event ) {
+	      alert( 'Oops! Something went wrong.' );
+	    });
+
+	    // Set up our request
+	    XHR.open( "POST", "http://localhost:8080/index" );
+
+	    // The data sent is what the user provided in the form
+	    XHR.send( FD );
+	  }
+
+	  // Access the form element...
+	  const form = document.getElementById("formal");
+
+	  // ...and take over its submit event.
+	  form.addEventListener( "submit", function ( event ) {
+	    event.preventDefault();
+	    sendData();
+	  } );
+	} );
   </script>
 </body>
 </html>

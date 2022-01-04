@@ -46,21 +46,21 @@ public class apiController{
     	List<Result> filmes = ConsumerAPI.ConnectAPI(q); 
     	
     	//passar o result para mongoModel
-    	List<MongoModel> mm = null;
+    	//List<MongoModel> mm = null;
     	mv.setViewName("buscarFilme");
         mv.addObject("obj", filmes);  
         return mv;
     } 
     
     @RequestMapping(value = "/index", method = RequestMethod.POST)
-    public String salvarCLI(@RequestParam("q") String q, @ModelAttribute MongoModel mm) {
+    public String salvarCLI(@ModelAttribute MongoModel mm) {
     	ModelAndView mv = new ModelAndView("index");
-    	List<Result> filmes = ConsumerAPI.ConnectAPI(q); 
-    	//watchlistService.save((Result) filmes);
-        	return "redirect:/minhaLista";
+    	mv.addObject("mm", mm);
+    	System.out.println("mongoModel-titulo => "+ mm.getTitulo()+ "|||" +mm.getPoster());
+    	return "redirect:/minhaLista";
     }
    
-    /*
+    
 	//criando formulario para preencher os posts
 	@RequestMapping(value = "/idx", method = RequestMethod.GET)
 	public ModelAndView getPostForm() {
@@ -74,10 +74,10 @@ public class apiController{
 	{
 		//dadosCliente que vai salvar no banco response.getBody().getResults().get(i)
 		System.out.println("espancando");
-		System.out.println("mongoModel => "+ mm.getTitulo() +" "+ mm.getPoster());
+		System.out.println("mongoModel => "+ mm.getClass() +" "+ mm.getPoster());
 		//filmesRepo.save(mongoModel); 
 		return "buscarFilme";
 	}
-*/
+
 
 }
