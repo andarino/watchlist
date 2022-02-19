@@ -11,4 +11,4 @@
 * Filmes encontrados pela API 
 ![consumer](https://github.com/andarino/watchlist-SQL/blob/main/img/pesquisa.png)
 
-* Função Salvar (ainda à ser feita)
+* Função 'Salvar Filme!' (ainda à ser feita)
