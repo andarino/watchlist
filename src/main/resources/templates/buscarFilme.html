@@ -51,22 +51,21 @@
   </header>
   <section>
   
-  <form id="formal" method="post" action="#" th:action="@{/index}" th:object="${mm}">
+  <form id="formal" method="post" action="#" th:action="@{/index}" th:object="${MongoModel}">
   
     <div class="container" style="width: 60%; padding-bottom: 30px;">
       <div class="filmes">     
-        <div class="card item" th:each="i : ${obj}" th:if="${i.getTitleType()} and ${i.image}">
+        <div class="card item" th:each="i : ${obj}" th:if="${i.getTitle()} and ${i.image}">
       		 	<img type="text" th:each="s : ${i.image}" 
       			 th:src="${s.url}" class="card-img-top" alt="...">
-      		 <input type="hidden" name="poster" />
+      		 <input type="hidden" />
 
           <div class="card-body" >
-			
 				<h5 type="text" class="card-title" th:text="${i.getTitle()}">TITU</h5>
-     		     <input type="hidden" name="titulo" th:value="${i.getTitle[0]}" />
-          <p><input type="submit" class="btn btn-primary" value="Send Me!" /> </p>
-            <button type="submit" class="btn btn-primary">Adicionar à lista</button>
-         
+		<input type="hidden" name="" th:each="s : ${i.getTitle()}" />
+          <!--  p><input type="submit" class="btn btn-primary" value="Send Me!" /> </p> -->
+          <!-- button type="" class="btn btn-primary">Adicionar à lista</button>   -->
+ 
           </div>
         </div>
         
@@ -76,40 +75,5 @@
     </form>
     
   </section>
-  <script type="text/javascript">
-  window.addEventListener( "load", function () {
-	  function sendData() {
-	    const XHR = new XMLHttpRequest();
-
-	    // Bind the FormData object and the form element
-	    const FD = new FormData( form );
-
-	    // Define what happens on successful data submission
-	    XHR.addEventListener( "load", function(event) {
-	      //alert( event.target.responseText );
-	    } );
-
-	    // Define what happens in case of error
-	    XHR.addEventListener( "error", function( event ) {
-	      alert( 'Oops! Something went wrong.' );
-	    });
-
-	    // Set up our request
-	    XHR.open( "POST", "http://localhost:8080/index" );
-
-	    // The data sent is what the user provided in the form
-	    XHR.send( FD );
-	  }
-
-	  // Access the form element...
-	  const form = document.getElementById("formal");
-
-	  // ...and take over its submit event.
-	  form.addEventListener( "submit", function ( event ) {
-	    event.preventDefault();
-	    sendData();
-	  } );
-	} );
-  </script>
 </body>
 </html>

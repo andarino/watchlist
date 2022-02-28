@@ -46,17 +46,18 @@ public class apiController{
     	List<Result> filmes = ConsumerAPI.ConnectAPI(q); 
     	
     	//passar o result para mongoModel
-    	//List<MongoModel> mm = null;
+    	List<MongoModel> mm = null;
     	mv.setViewName("buscarFilme");
         mv.addObject("obj", filmes);  
         return mv;
     } 
     
     @RequestMapping(value = "/index", method = RequestMethod.POST)
-    public String salvarCLI(@ModelAttribute MongoModel mm) {
+    public String salvarCLI(@ModelAttribute MongoModel mm, @RequestParam(name = "titulo") String titulo ) {
     	ModelAndView mv = new ModelAndView("index");
     	mv.addObject("mm", mm);
-    	System.out.println("mongoModel-titulo => "+ mm.getTitulo()+ "|||" +mm.getPoster());
+    	System.out.println("abuso -> "+titulo);
+    	System.out.println("mongoModel-titulo => "+ mm.getTitulo()+ "||" +mm.getPoster());
     	return "redirect:/minhaLista";
     }
    
