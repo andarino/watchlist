@@ -1,7 +1,7 @@
 # Watchlist
 ######  Project designed to help cinephiles around the world.
 
-![spring](https://img.shields.io/badge/Spring-6DB33F?style=for-the-badge&logo=spring&logoColor=white)
+![spring](https://img.shields.io/badge/Spring-6DB33F?logo=spring&logoColor=white)
 ![jpa](https://img.shields.io/badge/Made%20with-JPA-brightgreen)
 ![thymeleaf](https://img.shields.io/badge/-Thymeleaf-brightgreen)
 ![postgres](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white)
