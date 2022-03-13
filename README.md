@@ -4,7 +4,7 @@
 ![spring](https://img.shields.io/badge/Spring-6DB33F?logo=spring&logoColor=white)
 ![jpa](https://img.shields.io/badge/Made%20with-JPA-brightgreen)
 ![thymeleaf](https://img.shields.io/badge/-Thymeleaf-brightgreen)
-![postgres](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white)
+![postgres](https://img.shields.io/badge/PostgreSQL-316192?logo=postgresql&logoColor=white)
 
  * Introdução:
 ###### The application's consumer module connects to the IMDB API to get movie data, the Controller class passes useful data to the user (title, poster), and sends the user's preferences to the database to be saved.
