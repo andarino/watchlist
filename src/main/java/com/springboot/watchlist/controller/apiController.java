@@ -26,6 +26,7 @@ public class apiController{
 	    	List<MongoModel> filmesDetails = watchlistService.FindAll();
 	    	mv.setViewName("minhaLista");
 	    	mv.addObject("filmesDetails", filmesDetails);
+	    	System.out.println(filmesDetails);
 	        return mv;
 	    } 
 		
@@ -44,24 +45,14 @@ public class apiController{
     public ModelAndView consumerAPI(@RequestParam("q") String q) {
     	ModelAndView mv = new ModelAndView("index");    	
     	List<Result> filmes = ConsumerAPI.ConnectAPI(q); 
-    	
-    	//passar o result para mongoModel
-    	List<MongoModel> mm = null;
     	mv.setViewName("buscarFilme");
-        mv.addObject("obj", filmes);  
+    	//passar o result para mongoModel
+    	
+        mv.addObject("obj", filmes);
+        System.out.println(filmes.getClass());
         return mv;
     } 
-    
-    @RequestMapping(value = "/index", method = RequestMethod.POST)
-    public String salvarCLI(@ModelAttribute MongoModel mm, @RequestParam(name = "titulo") String titulo ) {
-    	ModelAndView mv = new ModelAndView("index");
-    	mv.addObject("mm", mm);
-    	System.out.println("abuso -> "+titulo);
-    	System.out.println("mongoModel-titulo => "+ mm.getTitulo()+ "||" +mm.getPoster());
-    	return "redirect:/minhaLista";
-    }
-   
-    
+ 
 	//criando formulario para preencher os posts
 	@RequestMapping(value = "/idx", method = RequestMethod.GET)
 	public ModelAndView getPostForm() {

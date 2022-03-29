@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html  lang="en" xmls:th="http://thymeleaf.org"
+	xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:sec="http://www.thymeleaf.org">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>Watchlist</title>
+  <style type="text/css">
+    .filmes{
+      width: 90%;
+      height: 90%;
+      display: flex;
+
+      flex: 1;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      margin-top: 70px;
+      padding-bottom: 30px;
+    }
+    .item{
+      width: 18rem;
+      margin-bottom: 1.6%;
+    }
+  </style>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.14"></script>
+
+</head>
+<body>
+
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">WatchList</a>
+   			<button class="navbar-toggler" type="button"
+					data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+					aria-controls="navbarSupportedContent" aria-expanded="false"
+					aria-label="Toggle navigation"></button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+            </li>
+          </ul>
+         <form method="GET"  th:action="@{/index}">
+            <input class="form-control me-2" name="q" type="search" placeholder="Search *" aria-label="Search">
+            <button type="submit" class="btn btn-outline-success" >Search</button>
+          </form> 
+        </div>
+      </div>
+    </nav>
+  </header>
+  <section>
+    <div id="app">
+       <p>{{}}</p>
+       <p>{{}}</p>
+    </div>
+
+  </section>
+</body>
+<script >
+import Vue from 'https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.esm.browser.js';
+
+var app = new Vue({
+    el: '#app',
+    data(){
+        return {
+          titulo : null,
+          url : null, 
+        }
+      },
+      methods: {
+        async getFilme(){
+ const req = await fetch("/index?q=spider")
+ /*          const req = await fetch("/index?q=spider").then(response => {
+              console.log(response);
+              return array.indexOf("java.util.ArrayList");
+            }).then(data => {
+              // Work with JSON data here
+              console.log(data);
+            }).catch(err => {
+              // Do something for an error here
+              console.log("Error Reading data " + err);
+            });
+       */
+          //const data = await req.json();
+          console.log(req);
+        }
+      }, 
+      mounted(){
+        this.getFilme()
+      }
+
+});
+
+</script>
+</html>
+
+
