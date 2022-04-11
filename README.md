@@ -14,4 +14,7 @@
 * Movies found by the API
 ![consumer](https://github.com/andarino/watchlist-SQL/blob/main/img/pesquisa.png)
 
-* Save Movie!" function (still to be done)
+* Note: This project still will evolve...
+  - [ ] Favorites
+  - [ ] Classification 
+  - [ ] Space to opinion
