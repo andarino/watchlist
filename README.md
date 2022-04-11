@@ -10,7 +10,7 @@ _"Project made to help cinephiles around the world."_
 
  # Introduction:
  
-The application consume a module to connect to the IMDB extern API to get movie data, the Controller class sends useful data to the user (title, poster), and sends the user's preferences back to database to be saved.
+The application consume the IMDB extern API to get movie data, the Controller sends useful data back to user (title, poster), and then sends the user's preferences back to database to be recorded.
 
 * Home
 ![home](https://github.com/andarino/watchlist-SQL/blob/main/img/home.png)
