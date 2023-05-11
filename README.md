@@ -17,8 +17,3 @@ The application consume the IMDB extern API to get movie data, the Controller se
 
 * Movies found by the API
 ![consumer](https://github.com/andarino/watchlist-SQL/blob/main/img/pesquisa.png)
-
-* Note: This project still will evolve...
-  - [ ] Favorites
-  - [ ] Classification 
-  - [ ] Space to opinion
